@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
+import handleChange from '../store/actions/signUpAction';
  class SignUp extends Component {
-    
-    //  handleChange = (e) => {
-    //    console.log("Chnage ", e.target.value)
-    //     this.setState({[e.target.id] : e.target.value});
-    //     console.log("Changed state", this.state)
-    //  }
      handleSubmit = (e) => {
        e.preventDefault();
        console.log("All gotten State",this.state);
@@ -41,8 +36,8 @@ import {connect} from 'react-redux';
                 <input type="text" id="lastName" onChange={this.handleFormChange}/>
             </div>
             <button type="submit" >Submit</button>
-            <label>{this.props.myProps && this.props.myProps.email}</label>
-            <input type="text" id="lastName" value={this.props.myProps.email}/>
+            <label>{this.props.bosahProps && this.props.bosahProps.email}</label>
+            <input type="text" id="lastName" value={this.props.bosahProps.email} onChange ={() => {}}/>
             {/* <div className="inputfield"><button type="submit" className="btn pink lighten-1 z-depth-0">SIGN UP</button></div> */}
         </form>
       </div>
@@ -53,15 +48,15 @@ import {connect} from 'react-redux';
 const mapStateToProps  = (state) => {
   console.log("MapStateToProps" , state)
   return {
-    myProps : state.SignUp
+    bosahProps : state.SignUp
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleChange : (data) => dispatch({type : "CHANGE_VALUE", payload : data})
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     handleChange : (data) => dispatch({type : "CHANGE_VALUE", payload : data})
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, {handleChange})(SignUp);
 // export default SignUp;
